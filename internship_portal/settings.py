@@ -25,7 +25,7 @@ import os
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-z+=#npzj*zr4k+53fis(4h^$+!0p34gauls1b6mrhv8s@cl1!z')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = [
     'internship-portal-teqg.onrender.com',
@@ -33,6 +33,27 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '0.0.0.0',
 ]
+
+# CSRF Settings
+CSRF_TRUSTED_ORIGINS = [
+    'https://internship-portal-teqg.onrender.com',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
+
+# Security Settings
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+
+# Session Settings
+SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
+CSRF_COOKIE_SECURE = False     # Set to True in production with HTTPS
+
+# Admin Site Settings
+ADMIN_SITE_HEADER = "Internship Portal Administration"
+ADMIN_SITE_TITLE = "Internship Portal Admin"
+ADMIN_INDEX_TITLE = "Welcome to Internship Portal Administration"
 
 
 # Application definition

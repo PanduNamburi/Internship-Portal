@@ -1,5 +1,11 @@
 from django.contrib import admin
+from django.contrib.admin import AdminSite
 from .models import Applicant
+
+# Customize admin site
+admin.site.site_header = "Internship Portal Administration"
+admin.site.site_title = "Internship Portal Admin"
+admin.site.index_title = "Welcome to Internship Portal Administration"
 
 @admin.register(Applicant)
 class ApplicantAdmin(admin.ModelAdmin):

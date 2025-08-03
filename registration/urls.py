@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('applicant/<int:applicant_id>/', views.applicant_detail, name='applicant_detail'),
     path('update-status/<int:applicant_id>/', views.update_status, name='update_status'),
+    path('test-csrf/', views.test_csrf, name='test_csrf'),
 ] 
