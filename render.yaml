@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: internship-portal
+    env: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn internship_portal.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0 
