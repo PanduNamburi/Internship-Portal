@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+
+{% block title %}Applicant Details - Internship Portal{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">
+                    <i class="fas fa-user me-2"></i>Applicant Details
+                </h2>
+                <div class="d-flex gap-2">
+                    <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Personal Information -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-user me-2"></i>Personal Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Full Name</label>
+                            <p class="mb-0">{{ applicant.first_name }} {{ applicant.last_name }}</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Email</label>
+                            <p class="mb-0">{{ applicant.email }}</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Phone</label>
+                            <p class="mb-0">{{ applicant.phone }}</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Date of Birth</label>
+                            <p class="mb-0">{{ applicant.date_of_birth|date:"F d, Y" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Details -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-briefcase me-2"></i>Application Details
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Position Type</label>
+                            <p class="mb-0">
+                                <span class="badge bg-info">{{ applicant.get_position_type_display }}</span>
+                            </p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Department</label>
+                            <p class="mb-0">{{ applicant.department }}</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Start Date</label>
+                            <p class="mb-0">{{ applicant.start_date|date:"F d, Y" }}</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">End Date</label>
+                            <p class="mb-0">
+                                {% if applicant.end_date %}
+                                    {{ applicant.end_date|date:"F d, Y" }}
+                                {% else %}
+                                    <span class="text-muted">Not specified</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education & Experience -->
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-graduation-cap me-2"></i>Education & Experience
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Current Education</label>
+                            <p class="mb-0">{{ applicant.current_education }}</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Institution</label>
+                            <p class="mb-0">{{ applicant.institution }}</p>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Graduation Year</label>
+                            <p class="mb-0">{{ applicant.graduation_year }}</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Relevant Experience</label>
+                        <p class="mb-0">{{ applicant.relevant_experience|linebreaks }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Motivation & Skills -->
+            <div class="card mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb me-2"></i>Motivation & Skills
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Motivation</label>
+                        <p class="mb-0">{{ applicant.motivation|linebreaks }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Skills & Competencies</label>
+                        <p class="mb-0">{{ applicant.skills|linebreaks }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            {% if applicant.cover_letter or applicant.resume %}
+                <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-file-alt me-2"></i>Additional Information
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% if applicant.cover_letter %}
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Cover Letter</label>
+                                <p class="mb-0">{{ applicant.cover_letter|linebreaks }}</p>
+                            </div>
+                        {% endif %}
+                        {% if applicant.resume %}
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Resume/CV</label>
+                                <p class="mb-0">
+                                    <a href="{{ applicant.resume.url }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                                        <i class="fas fa-download me-2"></i>Download Resume
+                                    </a>
+                                </p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Status Card -->
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-clipboard-check me-2"></i>Application Status
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Current Status</label>
+                        <div class="mb-2">
+                            {% if applicant.status == 'pending' %}
+                                <span class="badge bg-warning fs-6">Pending Review</span>
+                            {% elif applicant.status == 'approved' %}
+                                <span class="badge bg-success fs-6">Approved</span>
+                            {% elif applicant.status == 'rejected' %}
+                                <span class="badge bg-danger fs-6">Rejected</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Applied Date</label>
+                        <p class="mb-0">{{ applicant.applied_date|date:"F d, Y g:i A" }}</p>
+                    </div>
+
+                    <!-- Status Update Form -->
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="status" class="form-label fw-bold">Update Status</label>
+                            <select name="status" id="status" class="form-select">
+                                <option value="pending" {% if applicant.status == 'pending' %}selected{% endif %}>Pending</option>
+                                <option value="approved" {% if applicant.status == 'approved' %}selected{% endif %}>Approved</option>
+                                <option value="rejected" {% if applicant.status == 'rejected' %}selected{% endif %}>Rejected</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="admin_notes" class="form-label fw-bold">Admin Notes</label>
+                            <textarea name="admin_notes" id="admin_notes" class="form-control" rows="4" placeholder="Add notes about this application...">{{ applicant.admin_notes }}</textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-save me-2"></i>Update Status
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-bolt me-2"></i>Quick Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-success" onclick="updateStatus({{ applicant.id }}, 'approved')">
+                            <i class="fas fa-check me-2"></i>Approve Application
+                        </button>
+                        <button type="button" class="btn btn-danger" onclick="updateStatus({{ applicant.id }}, 'rejected')">
+                            <i class="fas fa-times me-2"></i>Reject Application
+                        </button>
+                        <a href="mailto:{{ applicant.email }}" class="btn btn-outline-primary">
+                            <i class="fas fa-envelope me-2"></i>Send Email
+                        </a>
+                        <a href="tel:{{ applicant.phone }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-phone me-2"></i>Call Applicant
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function updateStatus(applicantId, status) {
+    if (confirm('Are you sure you want to ' + status + ' this application?')) {
+        fetch(`/update-status/${applicantId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: `status=${status}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error updating status');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error updating status');
+        });
+    }
+}
+</script>
+{% endblock %} 

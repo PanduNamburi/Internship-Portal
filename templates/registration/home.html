@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Internship Portal{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Join Our Team</h1>
+                <p class="lead mb-4">Discover exciting internship and volunteer opportunities that will help you grow your skills and build your career.</p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'register' %}" class="btn btn-light btn-lg">
+                        <i class="fas fa-paper-plane me-2"></i>Apply Now
+                    </a>
+                    <a href="#opportunities" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-info-circle me-2"></i>Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <i class="fas fa-users fa-8x opacity-75"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="py-5" id="opportunities">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3">Available Opportunities</h2>
+                <p class="lead text-muted">Choose the path that best fits your goals and interests</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-laptop-code fa-3x text-primary"></i>
+                        </div>
+                        <h4 class="card-title">Internships</h4>
+                        <p class="card-text">Gain hands-on experience in your field of study. Work on real projects, learn from professionals, and build your portfolio.</p>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="fas fa-check text-success me-2"></i>Paid opportunities available</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Flexible schedules</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Mentorship programs</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Career development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-heart fa-3x text-primary"></i>
+                        </div>
+                        <h4 class="card-title">Volunteer Positions</h4>
+                        <p class="card-text">Make a difference in your community while gaining valuable experience. Contribute to meaningful projects and causes.</p>
+                        <ul class="list-unstyled text-start">
+                            <li><i class="fas fa-check text-success me-2"></i>Flexible time commitment</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Skill development</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Networking opportunities</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Community impact</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="display-6 fw-bold mb-4">Why Choose Us?</h2>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary rounded-circle p-2 me-3">
+                                <i class="fas fa-graduation-cap text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Learning & Growth</h6>
+                                <small class="text-muted">Continuous learning opportunities</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary rounded-circle p-2 me-3">
+                                <i class="fas fa-users text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Team Environment</h6>
+                                <small class="text-muted">Collaborative work culture</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary rounded-circle p-2 me-3">
+                                <i class="fas fa-chart-line text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Career Advancement</h6>
+                                <small class="text-muted">Path to full-time positions</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary rounded-circle p-2 me-3">
+                                <i class="fas fa-certificate text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Certification</h6>
+                                <small class="text-muted">Recognition for your work</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="bg-white p-4 rounded shadow">
+                    <h4 class="mb-3">Ready to Get Started?</h4>
+                    <p class="text-muted mb-4">Join our team and start your journey towards professional growth and success.</p>
+                    <a href="{% url 'register' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket me-2"></i>Start Application
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
